@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | Aryan Patel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+    --bg:#0e1116;
+    --bg-alt:#151920;
+    --panel:#151920;
+    --ink:#eef0f3;
+    --ink-soft:#9aa2ae;
+    --ink-faint:#5c6470;
+    --line:#262c36;
+    --accent:#5b8bff;
+    --accent-soft:#1b2436;
+    --laser:#e0332f;
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease,color .3s ease;
+  }
+  section[id]{scroll-margin-top:84px;}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--accent);outline-offset:2px;border-radius:1px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{
+    font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.02em;
+  }
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:26px;align-items:center;}
+  .nav-links a{
+    font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-soft);padding-bottom:6px;border-bottom:2px solid transparent;
+  }
+  .nav-links a.active{color:var(--accent);border-color:var(--accent);}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .btn{
+    font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    padding:10px 18px;border:1px solid var(--accent);color:var(--accent);
+    border-radius:var(--radius);white-space:nowrap;
+  }
+  .btn:hover{background:var(--accent-soft);}
+  .burger{
+    display:none;background:none;border:1px solid var(--line);border-radius:var(--radius);
+    width:34px;height:34px;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;flex-shrink:0;
+  }
+  .burger:hover{border-color:var(--accent);color:var(--accent);}
+  .mobile-menu{
+    display:none;flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:var(--bg);border-bottom:1px solid var(--line);
+    padding:4px 32px 16px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{
+    font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-soft);padding:14px 0;border-bottom:1px solid var(--line);
+  }
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu a.active{color:var(--accent);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:64px 0 40px;
+    border-bottom:1px solid var(--line);
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/100% 42px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/42px 100%;
+    background-color:var(--bg);
+    background-blend-mode:normal;
+    position:relative;
+  }
+  .hero .wrap{
+    background:var(--bg);
+    padding-top:32px;padding-bottom:8px;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+  }
+  .hero-left .frame-corner{
+    font-family:var(--mono);font-size:11px;color:var(--ink-faint);
+    border-left:1px solid var(--line);padding-left:10px;margin-bottom:18px;
+  }
+  h1.name{
+    font-family:var(--display);font-weight:700;
+    font-size:76px;line-height:.95;letter-spacing:-.01em;margin:6px 0 18px;
+  }
+  .role{
+    font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.04em;
+    text-transform:uppercase;margin-bottom:4px;
+  }
+  .school{
+    font-family:var(--mono);font-size:13px;color:var(--ink-soft);letter-spacing:.04em;
+    text-transform:uppercase;margin-bottom:26px;
+  }
+  .quote{
+    border-top:1px solid var(--line);padding-top:20px;margin-top:8px;position:relative;
+  }
+  .quote .mark{font-family:var(--display);font-size:34px;color:var(--accent);line-height:0;position:relative;top:14px;}
+  .quote p{font-size:17px;line-height:1.5;margin:0 0 8px;max-width:340px;}
+  .quote cite{font-family:var(--mono);font-size:12px;color:var(--accent);font-style:normal;}
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;margin-top:30px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    padding:14px 22px;border:1px solid var(--accent);color:var(--accent);border-radius:var(--radius);
+  }
+  .cta:hover{background:var(--accent-soft);}
+  .cta svg{width:14px;height:14px;transition:transform .2s;}
+  .cta:hover svg{transform:translateX(3px);}
+
+  /* ---------- HERO DRAWING ---------- */
+  .hero-right{position:relative;}
+  .drawing-svg{width:100%;height:auto;overflow:visible;border:1px solid var(--line);background:#fff;}
+  .badge-card{
+    position:absolute;top:-40px;right:0;
+    background:var(--panel);border:1px solid var(--line);padding:16px 18px;
+    width:190px;font-family:var(--mono);
+  }
+  .badge-card .t{font-size:11px;font-weight:500;letter-spacing:.03em;line-height:1.4;text-transform:uppercase;}
+  .badge-card .status-label{font-size:10px;color:var(--ink-faint);margin-top:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .badge-card .status{font-size:12px;color:var(--accent);margin-top:4px;letter-spacing:.06em;text-transform:uppercase;}
+  .badge-card .status::before{content:"●";margin-right:6px;font-size:8px;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:80px 0;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;
+  }
+  .section-num{
+    font-family:var(--mono);color:var(--accent);font-size:13px;letter-spacing:.1em;
+    display:flex;align-items:center;gap:10px;margin-bottom:8px;
+  }
+  .section-num::after{content:"";width:36px;height:1px;background:var(--line);}
+  h2.section-title{
+    font-family:var(--display);font-size:34px;font-weight:700;margin:0;letter-spacing:-.01em;
+  }
+  .view-all{
+    font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+    display:flex;align-items:center;gap:6px;
+  }
+
+  /* ---------- GOALS ---------- */
+  .goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .goal-card{border-left:2px solid var(--accent);padding:4px 0 4px 20px;}
+  .goal-card h3{font-family:var(--display);font-size:16px;font-weight:600;margin:0 0 8px;}
+  .goal-card p{font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:0;}
+
+  /* ---------- WORK CARDS ---------- */
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .card{border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;}
+  .thumb{aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:1px solid var(--line);}
+  .thumb svg{width:100%;height:100%;display:block;}
+  .card-num{
+    position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:12px;
+    background:rgba(0,0,0,.55);color:#fff;padding:3px 8px;letter-spacing:.05em;
+  }
+  .card-body{padding:22px;display:flex;flex-direction:column;flex:1;}
+  .card-body h3{font-family:var(--display);font-size:18px;margin:0 0 8px;font-weight:600;}
+  .card-body .question{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--accent);
+    margin:0 0 10px;line-height:1.4;text-transform:uppercase;
+  }
+  .card-body p{font-size:14px;line-height:1.55;color:var(--ink-soft);margin:0 0 14px;flex:1;}
+  .story-details{margin-bottom:14px;}
+  .story-details .read-more{margin-top:0;font-size:11px;}
+  .story-details .read-more-body p{font-size:13.5px;line-height:1.6;margin:0 0 12px;flex:none;}
+  .tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;
+    border:1px solid var(--line);color:var(--ink-soft);padding:5px 8px;
+  }
+  .tag-arrow{
+    margin-left:auto;width:30px;height:30px;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;
+  }
+  .card:hover .tag-arrow{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .skill-card{border:1px solid var(--line);background:var(--panel);padding:26px 24px;}
+  .skill-icon{
+    width:36px;height:36px;border:1px solid var(--line);display:flex;align-items:center;
+    justify-content:center;color:var(--accent);margin-bottom:16px;
+  }
+  .skill-card h3{font-family:var(--display);font-size:16px;font-weight:600;margin:0 0 10px;}
+  .skill-card p{font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:0;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:.85fr 1fr 1fr;gap:40px;align-items:start;}
+  .about-text p{font-size:15px;line-height:1.7;color:var(--ink-soft);margin:0 0 16px;}
+  .about-text{margin-top:8px;}
+  .read-more{
+    font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent);display:inline-flex;align-items:center;gap:6px;margin-top:8px;
+    cursor:pointer;list-style:none;
+  }
+  .read-more::-webkit-details-marker{display:none;}
+  .read-more svg{transition:transform .2s ease;}
+  details[open] .read-more svg{transform:rotate(90deg);}
+  .read-more-body{margin-top:14px;}
+  .read-more-body p{font-size:15px;line-height:1.7;color:var(--ink-soft);margin:0 0 16px;}
+  .portrait-frame{
+    position:relative;border:1px solid var(--line);background:var(--panel);
+    aspect-ratio:3/4;overflow:hidden;max-width:340px;
+  }
+  .portrait-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .portrait-frame .corner{
+    position:absolute;width:16px;height:16px;pointer-events:none;
+  }
+  .portrait-frame .corner.tl{top:8px;left:8px;border-top:1px solid var(--accent);border-left:1px solid var(--accent);}
+  .portrait-frame .corner.tr{top:8px;right:8px;border-top:1px solid var(--accent);border-right:1px solid var(--accent);}
+  .portrait-frame .corner.bl{bottom:8px;left:8px;border-bottom:1px solid var(--accent);border-left:1px solid var(--accent);}
+  .portrait-frame .corner.br{bottom:8px;right:8px;border-bottom:1px solid var(--accent);border-right:1px solid var(--accent);}
+  .traits{display:flex;flex-direction:column;gap:26px;}
+  .trait{display:flex;gap:14px;}
+  .trait-icon{
+    width:36px;height:36px;flex-shrink:0;border:1px solid var(--line);background:var(--panel);
+    display:flex;align-items:center;justify-content:center;color:var(--accent);
+  }
+  .trait h4{font-family:var(--display);font-size:15px;margin:0 0 4px;font-weight:600;}
+  .trait p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.5;}
+
+  /* ---------- FOOTER QUOTE ---------- */
+  footer{
+    background:#0d1420;color:#eef0f3;padding:64px 0;position:relative;overflow:hidden;
+    border-top:1px solid var(--line);
+  }
+  footer .bp-lines{
+    position:absolute;inset:0;opacity:.35;
+    background:
+      linear-gradient(#1c2740 1px, transparent 1px) 0 0/48px 48px,
+      linear-gradient(90deg,#1c2740 1px, transparent 1px) 0 0/48px 48px;
+  }
+  .foot-quote{position:relative;text-align:center;max-width:640px;margin:0 auto;}
+  .foot-quote .mark{color:#4a76e8;font-family:var(--display);font-size:30px;}
+  .foot-quote p{font-family:var(--display);font-size:24px;font-weight:600;line-height:1.4;margin:10px 0 14px;}
+  .foot-quote cite{font-family:var(--mono);font-size:12px;color:#7c88a6;font-style:normal;}
+
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-right{margin-top:60px;}
+    .badge-card{position:static;width:auto;margin-bottom:20px;}
+    h1.name{font-size:56px;}
+    .work-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .portrait-frame{max-width:280px;}
+    .skills-grid{grid-template-columns:1fr;}
+    .goals-grid{grid-template-columns:1fr;}
+    .about-grid[style]{grid-template-columns:1fr !important;}
+  }
+
+/* ---------- CROSS-PAGE ADDITIONS ---------- */
+.breadcrumb{
+  font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:.04em;
+  display:flex;align-items:center;gap:8px;margin-bottom:28px;
+}
+.breadcrumb a{color:var(--accent);}
+.breadcrumb svg{width:12px;height:12px;}
+
+.page-hero{padding:56px 0 40px;border-bottom:1px solid var(--line);}
+.page-hero .question{
+  font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px;
+}
+.page-hero h1{font-family:var(--display);font-size:44px;font-weight:700;letter-spacing:-.01em;margin:0 0 16px;line-height:1.05;}
+.page-hero .lede{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:640px;margin:0 0 20px;}
+.page-hero .tags{margin-top:8px;}
+
+.page-media{width:100%;border:1px solid var(--line);background:#fff;overflow:hidden;margin:0 0 8px;}
+.page-media img,.page-media svg{width:100%;height:auto;display:block;}
+.media-caption{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.03em;margin-bottom:44px;}
+
+.prose{max-width:680px;}
+.prose p{font-size:16px;line-height:1.75;color:var(--ink-soft);margin:0 0 20px;}
+.prose .pull-quote{
+  border-left:2px solid var(--accent);padding:4px 0 4px 20px;margin:36px 0;
+  font-family:var(--display);font-size:20px;font-weight:600;color:var(--ink);line-height:1.4;
+}
+.prose .pull-quote cite{display:block;font-family:var(--mono);font-size:12px;font-weight:400;color:var(--ink-soft);margin-top:10px;font-style:normal;}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:8px 0 8px;}
+.gallery .g-tile{aspect-ratio:4/3;border:1px solid var(--line);background:var(--bg-alt);overflow:hidden;position:relative;}
+.gallery .g-tile img,.gallery .g-tile svg{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery .g-tile.placeholder{
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+  color:var(--ink-faint);font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;text-align:center;padding:12px;
+}
+.gallery .g-tile.placeholder svg{width:22px;height:22px;object-fit:initial;}
+
+.other-projects{border-top:1px solid var(--line);padding-top:40px;margin-top:56px;}
+.other-projects h3{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 20px;}
+.op-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.op-card{
+  border:1px solid var(--line);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+}
+.op-card span{font-family:var(--display);font-weight:600;font-size:15px;}
+.op-card svg{width:16px;height:16px;color:var(--accent);flex-shrink:0;}
+
+/* ---------- CONTACT ---------- */
+.contact-hero{padding:90px 0;text-align:center;}
+.contact-hero .eyebrow{justify-content:center;display:flex;margin-bottom:16px;}
+.contact-hero h1{font-family:var(--display);font-size:52px;font-weight:700;letter-spacing:-.01em;margin:0 0 18px;}
+.contact-hero p{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:520px;margin:0 auto 34px;}
+.contact-email{
+  display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:18px;
+  border:1px solid var(--accent);color:var(--accent);padding:18px 30px;letter-spacing:.02em;
+}
+.contact-email:hover{background:var(--accent-soft);}
+.contact-details{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:720px;margin:56px auto 0;
+  border-top:1px solid var(--line);padding-top:36px;text-align:left;
+}
+.contact-details .cd-item .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;}
+.contact-details .cd-item .value{font-size:14.5px;color:var(--ink);line-height:1.5;}
+
+@media (max-width:900px){
+  .gallery{grid-template-columns:1fr 1fr;}
+  .op-grid{grid-template-columns:1fr;}
+  .contact-details{grid-template-columns:1fr;}
+  .page-hero h1{font-size:34px;}
+}
+
+/* ---------- CONTACT SECTION (in-page) ---------- */
+.contact-hero{padding:90px 0;text-align:center;}
+.contact-hero .eyebrow{justify-content:center;display:flex;margin-bottom:16px;}
+.contact-hero h2.section-title{font-size:44px;}
+.contact-hero p.contact-lede{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:520px;margin:0 auto 34px;}
+.contact-email{
+  display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:18px;
+  border:1px solid var(--accent);color:var(--accent);padding:18px 30px;letter-spacing:.02em;
+}
+.contact-email:hover{background:var(--accent-soft);}
+.contact-details{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:720px;margin:56px auto 0;
+  border-top:1px solid var(--line);padding-top:36px;text-align:left;
+}
+.contact-details .cd-item .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;}
+.contact-details .cd-item .value{font-size:14.5px;color:var(--ink);line-height:1.5;}
+
+@media (max-width:900px){
+  .contact-details{grid-template-columns:1fr;}
+}
+
+/* ---------- MULTI-PAGE ADDITIONS ---------- */
+[id]{scroll-margin-top:84px;}
+.project-block{border-top:1px solid var(--line);padding-top:56px;margin-top:56px;}
+.project-block:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+.resume-block{border-top:1px solid var(--line);padding-top:48px;margin-top:56px;max-width:520px;}
+.resume-block h2.section-title{margin-bottom:14px;}
+
+/* ---------- PROTOTYPE TIMELINE ---------- */
+.timeline{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:32px 0 8px;position:relative;
+}
+.timeline::before{
+  content:"";position:absolute;top:70px;left:calc(12.5% - 1px);right:calc(12.5% - 1px);height:1px;
+  background:var(--line);z-index:0;
+}
+.timeline-step{position:relative;padding:0 12px;text-align:center;}
+.timeline-step .t-dot{
+  width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);
+  margin:64px auto 14px;position:relative;z-index:1;box-shadow:0 0 0 1px var(--accent);
+}
+.timeline-step .t-media{
+  aspect-ratio:4/3;border:1px solid var(--line);background:var(--bg-alt);overflow:hidden;margin-bottom:12px;
+}
+.timeline-step .t-media img{width:100%;height:100%;object-fit:cover;display:block;}
+.timeline-step .t-media.placeholder{
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;
+  color:var(--ink-faint);font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;text-align:center;padding:10px;
+}
+.timeline-step .t-media.placeholder svg{width:20px;height:20px;}
+.timeline-step .t-label{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+.timeline-step .t-caption{font-size:12.5px;color:var(--ink-soft);line-height:1.5;}
+
+@media (max-width:900px){
+  .timeline{grid-template-columns:1fr 1fr;gap:24px 0;}
+  .timeline::before{display:none;}
+  .timeline-step .t-dot{margin-top:0;}
+}
+
+/* ---------- PROJECT HERO (mockup-inspired) ---------- */
+.project-hero{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start;margin-bottom:8px;}
+.project-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--accent);
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;text-transform:uppercase;
+}
+.project-eyebrow::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);}
+.project-hero h2.project-title{
+  font-family:var(--display);font-size:40px;font-weight:700;letter-spacing:-.01em;line-height:1.02;margin:0 0 14px;
+}
+.project-tagline{font-size:14.5px;color:var(--ink-soft);line-height:1.6;max-width:420px;margin:0 0 22px;}
+.project-hero .tags{margin-bottom:24px;}
+.project-meta{border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:0;}
+.project-meta .m-row{
+  display:flex;align-items:baseline;justify-content:space-between;padding:9px 0;
+  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;
+}
+.project-meta .m-row:last-child{border-bottom:none;}
+.project-meta .m-label{color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;}
+.project-meta .m-value{color:var(--ink);text-align:right;}
+.project-meta .m-value.accent{color:var(--accent);}
+.project-meta .m-value.accent::before{content:"● ";font-size:9px;}
+
+.annotated-photo{position:relative;border:1px solid var(--line);background:#fff;overflow:hidden;}
+.annotated-photo img{width:100%;height:100%;display:block;object-fit:cover;}
+.callout{
+  position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.03em;line-height:1.4;
+  color:var(--accent);background:rgba(255,255,255,.88);padding:3px 6px;border:1px solid var(--line);
+  pointer-events:none;white-space:nowrap;
+}
+.callout .c-sub{color:var(--ink-faint);text-transform:none;letter-spacing:0;}
+.callout-line{position:absolute;border-top:1px dashed var(--ink-faint);pointer-events:none;transform-origin:0 0;}
+
+/* ---------- NUMBERED SUBSECTION LABEL ---------- */
+.sub-num-label{
+  display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--accent);
+  letter-spacing:.08em;margin-bottom:8px;
+}
+.sub-num-label::after{content:"";width:32px;height:1px;background:var(--line);}
+.sub-heading{font-family:var(--display);font-size:22px;font-weight:700;margin:0 0 16px;}
+
+/* ---------- RESULTS GRID (mockup section 04) ---------- */
+.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:8px 0;}
+.results-grid .r-tile{border:1px solid var(--line);overflow:hidden;background:#0d0d10;aspect-ratio:1/1;}
+.results-grid .r-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+.results-grid .r-cap{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);text-align:center;margin-top:8px;letter-spacing:.02em;}
+
+@media (max-width:900px){
+  .project-hero{grid-template-columns:1fr;}
+  .results-grid{grid-template-columns:1fr 1fr;}
+  .callout{display:none;}
+}
+
+/* ================= PROJECT PAGE REDESIGN v2 ================= */
+
+/* Page header bar (breadcrumb + pager) */
+.ph-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);}
+.ph-pager{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);letter-spacing:.05em;}
+
+/* Hero v2 */
+.hero-v2{display:grid;grid-template-columns:.62fr 1.38fr;gap:56px;align-items:start;padding:44px 0 8px;}
+.pv2-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);
+  display:flex;align-items:center;gap:8px;margin-bottom:12px;text-transform:uppercase;
+}
+.pv2-eyebrow::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);}
+.pv2-title{font-family:var(--display);font-weight:700;font-size:46px;letter-spacing:-.015em;line-height:.98;margin:0 0 18px;text-transform:uppercase;}
+.pv2-lead{font-family:var(--display);font-weight:600;font-size:14.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin:0 0 6px;line-height:1.5;}
+.pv2-sub{font-family:var(--mono);font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 22px;line-height:1.6;max-width:340px;}
+.pv2-divider{width:36px;height:2px;background:var(--accent);margin:0 0 22px;}
+.pv2-meta{display:flex;flex-direction:column;margin-bottom:26px;}
+.pv2-meta .pm-row{
+  display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);
+}
+.pv2-meta .pm-row:first-child{border-top:1px solid var(--line);}
+.pv2-meta .pm-icon{width:15px;height:15px;color:var(--ink-faint);flex-shrink:0;}
+.pv2-meta .pm-icon svg{width:100%;height:100%;display:block;}
+.pv2-meta .pm-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);width:88px;flex-shrink:0;}
+.pv2-meta .pm-value{font-family:var(--mono);font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink-soft);}
+.pv2-meta .pm-value.accent{color:var(--accent);}
+.pv2-meta .pm-value.accent::before{content:"● ";font-size:8px;}
+.pv2-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+.pv2-btn-solid{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--accent);color:#fff;padding:13px 20px;display:inline-flex;align-items:center;gap:8px;
+}
+.pv2-btn-solid:hover{opacity:.9;}
+.pv2-btn-outline{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  border:1px solid var(--accent);color:var(--accent);padding:13px 20px;display:inline-flex;align-items:center;gap:8px;
+}
+.pv2-btn-outline:hover{background:var(--accent-soft);}
+.pv2-btn-solid svg,.pv2-btn-outline svg{width:12px;height:12px;flex-shrink:0;display:block;}
+
+/* Hero media with outside callouts */
+.pv2-media-wrap{position:relative;padding:38px 150px;}
+.pv2-media-frame{
+  position:relative;border:1px solid var(--line);background:#fff;overflow:hidden;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:28px 28px;background-color:var(--bg-alt);
+}
+.pv2-media-frame img{width:100%;height:auto;display:block;position:relative;z-index:1;}
+.pv2-corner{position:absolute;width:14px;height:14px;pointer-events:none;z-index:2;}
+.pv2-corner svg{width:100%;height:100%;color:var(--ink-faint);}
+.pv2-corner.tl{top:-1px;left:-1px;}
+.pv2-corner.tr{top:-1px;right:-1px;transform:scaleX(-1);}
+.pv2-corner.bl{bottom:-1px;left:-1px;transform:scaleY(-1);}
+.pv2-corner.br{bottom:-1px;right:-1px;transform:scale(-1,-1);}
+.pv2-callout{
+  position:absolute;font-family:var(--mono);font-size:10.5px;line-height:1.5;color:var(--accent);
+  letter-spacing:.02em;width:126px;z-index:3;
+}
+.pv2-callout .c2-sub{display:block;color:var(--ink-faint);text-transform:none;}
+.pv2-callout.pos-tl{top:38px;left:0;text-align:right;}
+.pv2-callout.pos-tr{top:38px;right:0;text-align:left;}
+.pv2-callout.pos-bl{bottom:38px;left:0;text-align:right;}
+.pv2-callout.pos-br{bottom:38px;right:0;text-align:left;}
+.pv2-leaders{position:absolute;inset:0;pointer-events:none;z-index:2;}
+.pv2-leaders line, .pv2-leaders path{stroke:var(--ink-faint);stroke-width:1;stroke-dasharray:2 3;fill:none;}
+.pv2-leaders circle{fill:var(--accent);}
+
+/* Numbered section (shared) */
+.pv2-section{padding:52px 0;border-top:1px solid var(--line);}
+.pv2-num{
+  display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--accent);
+  letter-spacing:.1em;margin-bottom:10px;
+}
+.pv2-num::after{content:"";width:32px;height:1px;background:var(--line);}
+.pv2-heading{font-family:var(--display);font-size:24px;font-weight:700;text-transform:uppercase;letter-spacing:-.005em;margin:0 0 18px;}
+.pv2-two-col{display:grid;grid-template-columns:.62fr 1.38fr;gap:56px;align-items:start;}
+.story-grid{grid-template-columns:1.65fr .85fr;}
+.pv2-col-text p{font-size:13.5px;line-height:1.65;color:var(--ink-soft);margin:0 0 14px;}
+.pv2-col-text b, .iter-cap b, .next-list b, .next-intro b{color:var(--ink);font-weight:700;}
+.pv2-col-text .story-question{
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 16px;line-height:1.4;
+}
+.story-subhead{
+  font-family:var(--display);font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:-.005em;
+  color:var(--ink);margin:36px 0 14px;border-top:1px solid var(--line);padding-top:24px;
+}
+
+/* Design Iterations, stacked vertically beside The Story text */
+.iter-col{display:flex;flex-direction:column;}
+.iter-col .iter-eyebrow{
+  font-family:var(--display);font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:-.005em;
+  color:var(--ink);margin:0 0 16px;
+}
+.iter-col .iter-card{width:100%;}
+.iter-col-connector{width:16px;height:32px;margin:10px auto;color:var(--ink-faint);flex-shrink:0;}
+.iter-col-connector svg{width:100%;height:100%;display:block;}
+
+/* What's Next planning cards */
+.next-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;max-width:900px;margin:20px 0 0;}
+.next-card{border:1px dashed var(--line);padding:16px 16px 18px;}
+.next-card h4{font-family:var(--display);font-size:13.5px;font-weight:700;margin:0 0 6px;letter-spacing:-.005em;}
+.next-card p{font-size:12px;line-height:1.55;color:var(--ink-soft);margin:0;}
+
+.pv2-link{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  display:inline-flex;align-items:center;gap:6px;margin-top:6px;
+}
+
+/* Flow diagram */
+.flow-diagram{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;width:100%;min-height:100%;}
+.fd-box{
+  border:1px solid var(--line);background:var(--panel);padding:14px 12px;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);width:150px;flex-shrink:0;text-align:center;
+  line-height:1.45;
+}
+.fd-box .fd-sub{display:block;color:var(--ink-faint);font-size:9.5px;margin-top:3px;}
+.fd-box.fd-accent{border-color:var(--accent);color:var(--accent);width:190px;}
+.fd-stack{display:flex;flex-direction:row;gap:10px;}
+.fd-arrow{width:16px;height:26px;flex-shrink:0;color:var(--accent);margin:4px 0;}
+.fd-arrow svg{width:100%;height:100%;display:block;}
+.fd-arrow.red{color:var(--laser);}
+.fd-icon-ring{width:34px;height:34px;margin:6px auto 0;color:var(--accent);}
+.fd-icon-ring svg{width:100%;height:100%;display:block;}
+
+/* Overview thumbnails (mechanical/system) */
+.ov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.ov-tile{border:1px solid var(--line);background:#fff;aspect-ratio:1/1;position:relative;padding:10px;}
+.ov-label{position:absolute;top:8px;left:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);}
+.ov-tile svg{width:100%;height:100%;}
+.ov-tile img{width:100%;height:100%;object-fit:cover;}
+
+/* Iteration cards (V1/V2/V3) */
+.iter-row{display:flex;align-items:flex-start;gap:0;flex-wrap:wrap;row-gap:24px;}
+.iter-card{flex:1;min-width:150px;}
+.iter-label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase;margin-bottom:10px;}
+.iter-media{border:1px solid var(--line);background:var(--bg-alt);aspect-ratio:1/1;overflow:hidden;margin-bottom:10px;}
+.iter-media img{width:100%;height:100%;object-fit:cover;display:block;}
+.iter-media.placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:var(--ink-faint);font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;text-align:center;padding:10px;}
+.iter-media.placeholder svg{width:22px;height:22px;flex-shrink:0;}
+.iter-cap{font-size:12px;line-height:1.55;color:var(--ink-soft);}
+.iter-connector{width:44px;height:16px;flex-shrink:0;color:var(--ink-faint);align-self:center;margin:60px 8px 0;}
+.iter-connector svg{width:100%;height:100%;display:block;}
+
+/* What's Next */
+.next-intro{font-size:13.5px;line-height:1.65;color:var(--ink-soft);max-width:620px;margin:0 0 18px;}
+.next-list{list-style:none;margin:0;padding:0;max-width:620px;display:grid;gap:12px;}
+.next-list li{
+  position:relative;padding-left:22px;font-size:13px;line-height:1.55;color:var(--ink-soft);
+}
+.next-list li::before{
+  content:"";position:absolute;left:0;top:7px;width:8px;height:8px;border:1px solid var(--accent);
+}
+
+/* Results grid v2 */
+.res-grid-v2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.res-grid-5{grid-template-columns:repeat(5,1fr);gap:12px;}
+.res-tile-v2{border:1px solid var(--line);overflow:hidden;background:#0d0d10;aspect-ratio:1/1;}
+.res-tile-v2 img{width:100%;height:100%;object-fit:cover;display:block;}
+.res-cap-v2{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);text-align:center;margin-top:8px;letter-spacing:.04em;text-transform:uppercase;}
+
+@media (max-width:900px){
+  .hero-v2{grid-template-columns:1fr;}
+  .pv2-media-wrap{padding:24px 20px;}
+  .pv2-callout{display:none;}
+  .pv2-two-col, .story-grid{grid-template-columns:1fr;}
+  .ov-grid{grid-template-columns:1fr 1fr;}
+  .res-grid-v2, .res-grid-5{grid-template-columns:1fr 1fr;}
+  .iter-connector{display:none;}
+}
+
+/* Temporary stand-in badge for placeholder images */
+.stand-in{position:relative;}
+.stand-in img{filter:grayscale(1) contrast(1.05);opacity:.55;}
+.stand-in-badge{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:#fff;text-align:center;padding:14px;z-index:2;
+}
+.stand-in-badge span{background:rgba(0,0,0,.65);padding:8px 12px;line-height:1.5;}
+
+/* ---------- NAV / FOOTER QUICK LINKS ---------- */
+.nav-icons{display:flex;gap:8px;align-items:center;}
+.icon-link{
+  width:34px;height:34px;border:1px solid var(--line);border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;color:var(--ink-soft);flex-shrink:0;
+}
+.icon-link svg{width:15px;height:15px;}
+.icon-link:hover{border-color:var(--accent);color:var(--accent);}
+.foot-links{
+  position:relative;margin-top:32px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8b96b3;
+}
+.foot-links a{display:inline-flex;align-items:center;gap:6px;}
+.foot-links a:hover{color:#eef0f3;}
+.foot-links svg{width:13px;height:13px;}
+.foot-quote .foot-disclosure{
+  position:relative;margin:24px auto 0;max-width:480px;text-align:center;
+  font-family:var(--mono);font-size:10.5px;line-height:1.6;letter-spacing:.02em;color:#5c6787;
+}
+
+/* ---------- PROJECT DEMO VIDEO ----------
+   <video class="project-video" autoplay muted loop playsinline poster="assets/img/HASH.jpg">
+     <source src="assets/video/NAME.mp4" type="video/mp4">
+   </video>
+   <img class="project-video-fallback" src="assets/img/HASH.jpg" alt="...">
+   The <img> stays hidden unless the visitor has requested reduced motion,
+   in which case the video is hidden and the still frame is shown instead. */
+.project-video{width:100%;height:auto;display:block;position:relative;z-index:1;}
+.project-video-fallback{display:none;width:100%;height:auto;}
+@media (prefers-reduced-motion: reduce){
+  .project-video{display:none;}
+  .project-video-fallback{display:block;}
+}
+
+/* Paired demo-clip grid (e.g. Results section) */
+.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:28px auto 0;max-width:420px;}
+.video-tile{border:1px solid var(--line);overflow:hidden;background:#0d0d10;aspect-ratio:3/4;position:relative;}
+.video-tile video, .video-tile img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;}
+.video-cap{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);text-align:center;margin-top:8px;letter-spacing:.02em;text-transform:uppercase;}
+@media (max-width:900px){
+  .video-grid{max-width:320px;}
+}
+
+/* Clickable image lightbox */
+.zoomable{cursor:zoom-in;}
+.lightbox-overlay{
+  position:fixed;inset:0;background:rgba(10,11,14,.92);z-index:999;
+  display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out;
+}
+.lightbox-overlay.open{display:flex;}
+.lightbox-overlay img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.lightbox-overlay video{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.lightbox-close{
+  position:absolute;top:20px;right:24px;color:#fff;font-family:var(--mono);font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px;cursor:pointer;
+}
+
+/* ---------- CLICKABLE AFFORDANCE: ANIMATED UNDERLINE ---------- */
+.nav-links a, .mobile-menu a, .breadcrumb a, .read-more, .view-all,
+.op-card span{
+  position:relative;
+}
+.nav-links a::after, .mobile-menu a::after, .breadcrumb a::after,
+.read-more::after, .view-all::after,
+.op-card span::after{
+  content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:right;
+  transition:transform .22s ease;
+}
+.nav-links a:hover::after, .nav-links a:focus-visible::after,
+.mobile-menu a:hover::after, .mobile-menu a:focus-visible::after,
+.breadcrumb a:hover::after, .breadcrumb a:focus-visible::after,
+.read-more:hover::after, .read-more:focus-visible::after,
+.view-all:hover::after, .view-all:focus-visible::after,
+.op-card:hover span::after, .op-card:focus-within span::after{
+  transform:scaleX(1);transform-origin:left;
+}
+.read-more svg, .view-all svg{transition:transform .2s ease;}
+.read-more:hover svg, .view-all:hover svg,
+.read-more:focus-visible svg, .view-all:focus-visible svg{transform:translateX(3px);}
+
+a.tag:hover, a.tag:focus-visible{border-color:var(--accent);color:var(--accent);}
+.op-card:hover, .op-card:focus-within{border-color:var(--accent);background:var(--accent-soft);}
+
+/* Thumbnails/photos gently scale on hover to hint they lead somewhere */
+.thumb{overflow:hidden;}
+.thumb img{transition:transform .35s ease;}
+.card:hover .thumb img{transform:scale(1.04);}
+.ov-tile{overflow:hidden;}
+.zoomable{transition:transform .3s ease;}
+.zoomable:hover{transform:scale(1.02);}
+
+@media (prefers-reduced-motion: reduce){
+  .nav-links a::after, .mobile-menu a::after, .breadcrumb a::after,
+  .read-more::after, .view-all::after,
+  .op-card span::after, .read-more svg, .view-all svg,
+  .thumb img, .zoomable{
+    transition:none;
+  }
+  .card:hover .thumb img, .zoomable:hover{transform:none;}
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="resume.html">Resume</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-icons">
+        <!-- TODO(Aryan): add GitHub + LinkedIn icon-links here once you share the profile URLs -->
+      </div>
+      <a href="contact.html" class="btn">Contact Me</a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg id="burgerIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="resume.html">Resume</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Projects</span>
+    </div>
+    <div class="question">The best way I've found to learn is by building.</div>
+    <h1>Projects</h1>
+    <p class="lede">Every project below began with a question, a challenge, or an idea I wanted to better understand.</p>
+    <div class="tags">
+      <a href="#laser-projector" class="tag" style="cursor:pointer;">Laser Projector</a>
+      <a href="#breadboard-computer" class="tag" style="cursor:pointer;">8-Bit Computer</a>
+      <a href="#solar-system-simulator" class="tag" style="cursor:pointer;">Solar System Simulator</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+
+    <!-- ============ PROJECT 1: LASER PROJECTOR ============ -->
+    <div class="project-block" id="laser-projector">
+      <div class="ph-bar">
+        <div class="breadcrumb" style="margin-bottom:0;">
+          <a href="index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <a href="#">Projects</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <span>Laser Projector</span>
+        </div>
+        <div class="ph-pager">
+          <span>01 / 03</span>
+        </div>
+      </div>
+
+      <div class="hero-v2">
+        <div>
+          <div class="pv2-eyebrow">Project / 01</div>
+          <h2 class="pv2-title">Laser<br>Projector</h2>
+          <p class="pv2-lead">Recreating a projector with a laser</p>
+          <p class="pv2-sub">Using custom hardware, embedded systems, and precision mechanical design.</p>
+          <div class="pv2-divider"></div>
+          <div class="pv2-meta">
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span class="pm-label">Status</span><span class="pm-value accent">Functional</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a1.5 1.5 0 0 0 2 2l6-6a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2z"/></svg></span><span class="pm-label">Disciplines</span><span class="pm-value">Mechanical, Electrical, Optics</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="pm-label">Tools</span><span class="pm-value">SolidWorks, Arduino, 3D Printing</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span><span class="pm-label">Build</span><span class="pm-value">Prototype 04</span></div>
+          </div>
+          <div class="pv2-ctas">
+            <a href="contact.html" class="pv2-btn-solid">Contact Me About This <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></a>          </div>
+        </div>
+
+        <div class="pv2-media-wrap">
+          <div class="pv2-callout pos-tl"><span class="leader-line"></span>NEMA 17 Stepper Motor<span class="c2-sub">Y-axis</span></div>
+          <div class="pv2-callout pos-tr"><span class="leader-line"></span>Laser Diode<span class="c2-sub">Focused beam</span></div>
+          <div class="pv2-callout pos-bl"><span class="leader-line"></span>HDD Spindle Motor<span class="c2-sub">X-axis</span></div>
+          <div class="pv2-callout pos-br"><span class="leader-line"></span>12-Facet Polygon Mirror<span class="c2-sub">Reflects laser beam</span></div>
+          <div class="pv2-media-frame">
+            <span class="pv2-corner tl"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner tr"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner bl"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner br"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <img src="assets/img/1f8283f59a.jpg" alt="Laser projector mechanical assembly with polygon mirror, stepper motor, and driver electronics">
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section">
+        <div class="pv2-two-col">
+          <div class="pv2-col-text">
+            <div class="pv2-num">01</div>
+            <h3 class="pv2-heading">The Idea</h3>
+            <p>After watching Ben Makes Everything create a laser projector on his YouTube channel, I became inspired to create my own; however, I wanted to see if I could simplify his approach.</p>
+            <p>The goal was to scan a laser across a surface so fast that it would create an image. At first, I was going to use two stepper motors to angle the beam to its desired destination, but I soon followed Ben Makes Everything with the use of an old hard drive motor.</p>
+            <p>The electronics side had its own learning curve. Early on, I damaged a stepper motor driver and an Arduino Uno by feeding them the wrong voltage. Each time I messed up, I had to fix a mechanical issue. This iteration felt more like tuning an instrument rather than just fixing some code.</p>
+          </div>
+          <div class="flow-diagram">
+            <div class="fd-box">Laser Diode<span class="fd-sub">TTL, 650nm</span></div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-box fd-accent">12-Facet Polygon Mirror<span class="fd-sub">+ X-Axis HDD Spindle Motor</span></div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-box">Y-Axis<span class="fd-sub">NEMA 17 Stepper</span></div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-box">Projection<br>Surface</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section">
+        <div class="pv2-num">02</div>
+        <h3 class="pv2-heading">The Story</h3>
+        <div class="pv2-two-col story-grid">
+          <div class="pv2-col-text" style="max-width:680px;">
+            <p class="story-question">Question that started it: Can I recreate a projector with a laser?</p>
+            <p>When I first saw Ben Makes Everything's video of laser projectors drawing shapes in midair, I was fascinated by how something as simple as a single beam of light could produce detailed animations and images. I understood the basic idea that mirrors could redirect the beam, but I had no real understanding of how those mirrors were controlled with enough precision to create recognizable patterns. Rather than buying a ready-made projector, I wanted to build one from scratch so I could understand every part of the system.</p>
+            <p>My initial design centered around an idea that was simple and based on a laser show machine. I used two NEMA 17 stepper motors that were aligned perpendicular to each other. They both had a mirror on them that would reflect the laser beam to create shapes. At first, I had the beam scanning back and forth like a Raster Scan in old televisions; however, I soon realized that for the design, this was inefficient. Since I wanted to create similar images as Ben Makes Everything, I would have to redesign the entire mechanism.</p>
+            <p>The next design I created used an old hard drive from a computer I found lying around in my house. While this design did create the projection I was expecting, it was not as efficient as I was hoping. Since I did not have a motor driver for the hard drive motor, I used the PCB that came in the hard drive; however, this PCB had a limit of 15 seconds before it would turn the hard drive motor off. Alongside this time limit, creating the 12-facet polygon mirror was harder than it first seemed.</p>
+            <p>Because the mirrors were incredibly small, even tiny imperfections in their mounting produced noticeable distortions in the projected image. I designed and repeatedly redesigned 3D-printed mirror holders, experimenting with different ways of keeping the mirrors perfectly flat and aligned. I finally ended on a design that firmly held the mirrors flat to the body of the polygon. After this issue was resolved, I noticed that there was a slight tilt to the projected image due to the location of the laser and mirrors.</p>
+            <p>In the next rendition, I added a BLDC motor driver so that the image could be projected for longer. I also switched out the laser for a TTL laser pointer. This laser pointer was better since it would be faster at turning on and off compared to a 532 nm Green Diode Laser. One thing I was still noticing was that the image that was projected was tilted to the left. I traced this issue back to the positioning of the laser. In the final design, I centered the laser so that the distortion would be centered and easier to fix.</p>
+            <p>Programming the projector became another opportunity to connect theory with reality. I wrote Arduino code to coordinate the laser, control the motors, and calibrate their movement using sensors. I designed the code so that it would project a 12 x 12 pixel grid. Using this layout, I created letters that I could use to project my name.</p>
+            <p>One of my favorite moments came when the projector finally began producing recognizable patterns. Although the images were far from perfect, watching a design emerge from nothing more than a moving laser beam and two rotating mirrors was incredibly rewarding. After weeks of troubleshooting alignment issues, redesigning printed parts, and refining the control software, seeing the system behave as intended made every iteration worthwhile.</p>
+            <p>Even now, I don't consider the project finished. I plan to improve the projection quality by refining the mirror mounts, increasing the scanning speed, and implementing more advanced control algorithms that produce smoother, more accurate images. I'd also like to explore features such as grayscale rendering, color projection, and eventually projecting simple animations. Every improvement opens the door to another engineering challenge, which is exactly what makes the project so rewarding.</p>
+            <p>More than anything, this project taught me that successful engineering depends on bringing together many different disciplines rather than mastering just one. Mechanical tolerances, electrical circuits, embedded programming, and optics all had to work together before the system could succeed. It reinforced something I've come to appreciate throughout my engineering projects: understanding how individual components work is important, but understanding how they interact is what ultimately turns an idea into a functioning system.</p>
+            <div class="story-subhead">Results</div>
+            <p>After calibrating the system and refining the mechanics and control, the projector is able to scan recognizable letters using <b>a single laser</b>, spelling out my own name one test pattern at a time.</p>
+            <div class="res-grid-v2 res-grid-5">
+              <div>
+                <div class="res-tile-v2"><img src="assets/img/ac781a1ccc.jpg" alt="Laser-scanned letter A" loading="lazy"></div>
+                <div class="res-cap-v2">A</div>
+              </div>
+              <div>
+                <div class="res-tile-v2"><img src="assets/img/16ebf845ed.jpg" alt="Laser-scanned letter R" loading="lazy"></div>
+                <div class="res-cap-v2">R</div>
+              </div>
+              <div>
+                <div class="res-tile-v2"><img src="assets/img/7653f1676f.jpg" alt="Laser-scanned letter Y" loading="lazy"></div>
+                <div class="res-cap-v2">Y</div>
+              </div>
+              <div>
+                <div class="res-tile-v2"><img src="assets/img/9a479eeccd.jpg" alt="Laser-scanned letter A" loading="lazy"></div>
+                <div class="res-cap-v2">A</div>
+              </div>
+              <div>
+                <div class="res-tile-v2"><img src="assets/img/3819dabf09.jpg" alt="Laser-scanned letter N" loading="lazy"></div>
+                <div class="res-cap-v2">N</div>
+              </div>
+            </div>
+            <div class="video-grid">
+              <div>
+                <div class="video-tile">
+                  <video class="project-video" autoplay muted loop playsinline poster="assets/img/80dad6c2b7.jpg">
+                    <source src="assets/video/laser-projector-scan.mp4" type="video/mp4">
+                  </video>
+                  <img class="project-video-fallback" src="assets/img/80dad6c2b7.jpg" alt="Laser projector scanning letters in real time">
+                </div>
+                <div class="video-cap">Scanning in Real Time (flicker is a camera frame-rate artifact, not the actual beam)</div>
+              </div>
+              <div>
+                <div class="video-tile">
+                  <video class="project-video" autoplay muted loop playsinline poster="assets/img/801c6e6909.jpg">
+                    <source src="assets/video/laser-projector-setup.mp4" type="video/mp4">
+                  </video>
+                  <img class="project-video-fallback" src="assets/img/801c6e6909.jpg" alt="Full laser projector setup running with the polygon mirror spinning">
+                </div>
+                <div class="video-cap">Full Setup Running</div>
+              </div>
+            </div>
+          </div>
+          <div class="iter-col">
+            <div class="iter-eyebrow">Design Iterations</div>
+            <div class="iter-card">
+              <div class="iter-label">V1</div>
+              <div class="iter-media"><img src="assets/img/d12366f589.png" alt="Initial laser projector design using two NEMA 17 stepper motors, galvanometer-inspired" loading="lazy"></div>
+              <div class="iter-cap">Inspired by galvanometer laser projectors, but a real galvo setup was out of budget. Used NEMA 17 stepper motors instead, but they turned out to be too slow to keep up with the scan speed needed to form an image.</div>
+            </div>
+            <span class="iter-col-connector"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="iter-card">
+              <div class="iter-label">V2</div>
+              <div class="iter-media"><img src="assets/img/3a8075d780.png" alt="Second iteration replacing one stepper with a salvaged HDD spindle motor" loading="lazy"></div>
+              <div class="iter-cap">Swapped in a salvaged HDD spindle motor with its stock driver chip, but the chip caused the motor to shut off after about <b>15 seconds</b>.</div>
+            </div>
+            <span class="iter-col-connector"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="iter-card">
+              <div class="iter-label">V3</div>
+              <div class="iter-media"><img src="assets/img/47d99a911a.png" alt="Third iteration with a BLDC motor controller, laser off-center from the mirror" loading="lazy"></div>
+              <div class="iter-cap">Replaced the stock chip with a BLDC motor controller, but the laser wasn't centered on the <b>12-facet polygon mirror</b>, distorting the image in one direction.</div>
+            </div>
+            <span class="iter-col-connector"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="iter-card">
+              <div class="iter-label">V4 (Current)</div>
+              <div class="iter-media"><img src="assets/img/a694306158.png" alt="Final laser projector design with the laser centered on the polygon mirror" loading="lazy"></div>
+              <div class="iter-cap">Centered the laser on the mirror and adjusted the reflection angle so the distortion is centered, making it easier to correct in code. Also switched to a TTL laser so it can turn on and off faster.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section">
+        <div class="pv2-two-col">
+          <div class="pv2-col-text">
+            <div class="pv2-num">03</div>
+            <h3 class="pv2-heading">Mechanical Overview</h3>
+            <p>Custom mount designed for precise alignment between the laser diode, polygon mirror, and motion systems.</p>
+            <p><b>Millimeter-level tolerances</b> were essential for a sharp, undistorted image.</p>
+          </div>
+          <div class="ov-grid">
+            <div class="ov-tile">
+              <span class="ov-label">Top View</span>
+              <img src="assets/img/c8760004b0.png" alt="Laser projector mount, top view CAD render" loading="lazy">
+            </div>
+            <div class="ov-tile">
+              <span class="ov-label">Side View</span>
+              <img src="assets/img/a9057c80c0.png" alt="Laser projector mount, side view CAD render" loading="lazy">
+            </div>
+            <div class="ov-tile">
+              <span class="ov-label">Front View</span>
+              <img src="assets/img/680b84a849.png" alt="Laser projector mount, front view CAD render" loading="lazy">
+            </div>
+            <div class="ov-tile">
+              <span class="ov-label">Iso</span>
+              <img src="assets/img/a694306158.png" alt="Laser projector mount, isometric CAD render" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section" style="border-bottom:none;">
+        <div class="pv2-num">04</div>
+        <h3 class="pv2-heading">Electronics</h3>
+        <div class="pv2-two-col">
+          <div class="pv2-col-text">
+            <p class="next-intro">An Arduino Nano acts as the central controller, generating the step pulses and timing the laser so the beam only fires where it needs to. Each axis has its own motor and driver:</p>
+            <ul class="next-list">
+              <li>Arduino Nano: coordinates both axes and switches the TTL laser diode on and off in sync with the scan</li>
+              <li>NEMA 17 stepper motor driven by an <b>A4988 stepper driver</b>: controls the Y-axis</li>
+              <li>Salvaged HDD spindle motor driven by a BLDC motor controller: spins the <b>12-facet polygon mirror</b> for the X-axis</li>
+            </ul>
+          </div>
+          <div>
+            <div class="gallery" style="grid-template-columns:1fr;margin:0 0 8px;">
+              <div class="g-tile">
+                <img src="assets/img/0be66903ae.jpg" alt="Arduino Nano and motor driver breadboard wiring" loading="lazy">
+              </div>
+            </div>
+            <div class="media-caption" style="margin-bottom:0;">The Arduino Nano and motor driver wiring that coordinates the laser and both axes.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section" style="border-bottom:none;">
+        <div class="pv2-num">05</div>
+        <h3 class="pv2-heading">What's Next</h3>
+        <p class="next-intro">The projector reliably scans recognizable letters, but the image still shows some distortion, largely a result of the accuracy limits of a 3D-printed <b>12-facet polygon mirror</b>, which is difficult to manufacture with enough precision on a consumer 3D printer. A few upgrades are next on the list:</p>
+        <div class="next-grid">
+          <div class="next-card">
+            <h4>Precision Mirror</h4>
+            <p>A more precisely manufactured polygon mirror to reduce the distortion introduced by the current 3D-printed part.</p>
+          </div>
+          <div class="next-card">
+            <h4>Galvanometer Upgrade</h4>
+            <p>Replacing the NEMA 17 stepper motor with a galvanometer for faster, more precise beam deflection than a stepper can provide.</p>
+          </div>
+          <div class="next-card">
+            <h4>Multi-Color Laser</h4>
+            <p>A multi-color laser module to improve image fidelity and enable full-color projections.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PROJECT 2: BREADBOARD COMPUTER ============ -->
+    <div class="project-block" id="breadboard-computer">
+      <div class="ph-bar">
+        <div class="breadcrumb" style="margin-bottom:0;">
+          <a href="index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <a href="#">Projects</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <span>8-Bit Breadboard Computer</span>
+        </div>
+        <div class="ph-pager">
+          <span>02 / 03</span>
+        </div>
+      </div>
+
+      <div class="hero-v2">
+        <div>
+          <div class="pv2-eyebrow">Project / 02</div>
+          <h2 class="pv2-title">8-Bit<br>Breadboard<br>Computer</h2>
+          <p class="pv2-lead">Building a computer from the ground up</p>
+          <p class="pv2-sub">Wire by wire, to understand how instructions are executed at the lowest level.</p>
+          <div class="pv2-divider"></div>
+          <div class="pv2-meta">
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span class="pm-label">Status</span><span class="pm-value accent">Functional</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a1.5 1.5 0 0 0 2 2l6-6a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2z"/></svg></span><span class="pm-label">Disciplines</span><span class="pm-value">Digital Logic, Assembly</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="pm-label">Tools</span><span class="pm-value">Breadboards, TTL ICs</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span><span class="pm-label">Basis</span><span class="pm-value">Ben Eater's Design</span></div>
+          </div>
+          <div class="pv2-ctas">
+            <a href="contact.html" class="pv2-btn-solid">Contact Me About This <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></a>          </div>
+        </div>
+
+        <!-- TODO(Aryan): swap for a short muted/looping demo clip of the computer clocking through instructions
+             (bus/register LEDs changing). Drop the file at assets/video/breadboard-computer-demo.mp4, then
+             replace the <img> below with:
+             <video class="project-video" autoplay muted loop playsinline poster="assets/img/faad4d268f.jpg">
+               <source src="assets/video/breadboard-computer-demo.mp4" type="video/mp4">
+             </video>
+             <img class="project-video-fallback" src="assets/img/faad4d268f.jpg" alt="Full 8-bit breadboard computer build">
+             (.project-video / .project-video-fallback CSS already defined, swaps automatically for prefers-reduced-motion.) -->
+        <div class="pv2-media-wrap" style="padding:24px;">
+          <div class="pv2-media-frame">
+            <span class="pv2-corner tl"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner tr"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner bl"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner br"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <img src="assets/img/faad4d268f.jpg" alt="Full 8-bit breadboard computer build" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section">
+        <div class="pv2-two-col">
+          <div class="pv2-col-text">
+            <div class="pv2-num">01</div>
+            <h3 class="pv2-heading">The Idea</h3>
+            <p>Instead of accepting that a computer "just works," I wanted to understand every layer beneath the software. For example, I wanted to learn how the clock circuit interacts with the control logic that decides what happens on every cycle.</p>
+            <p>Following Ben Eater's architecture, I built and wired every module myself to see how instructions actually move through hardware. Many of the chips the build needed were hard to find or overpriced locally. Because of this issue, I sourced several while visiting family in India.</p>
+            <p>The finished computer runs real programs, but I still think of it as a foundation rather than a finished project. The next additions on my list are more memory, a simple display, and eventually a game like Snake running on hand-soldered logic.</p>
+          </div>
+          <div class="flow-diagram">
+            <div class="fd-box">Clock<span class="fd-sub">Oscillator</span></div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-box fd-accent">Control Logic<span class="fd-sub">Microcode ROM</span></div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-stack">
+              <div class="fd-box">Registers<span class="fd-sub">A / B / IR</span></div>
+              <div class="fd-box">ALU<span class="fd-sub">Add / Subtract</span></div>
+            </div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-box">Output<br>7-Segment</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section">
+        <div class="pv2-num">02</div>
+        <h3 class="pv2-heading">The Story</h3>
+        <div class="pv2-two-col story-grid">
+          <div class="pv2-col-text" style="max-width:680px;">
+            <p class="story-question">Question that started it: How does a computer actually execute instructions?</p>
+            <p>When I first began coding, I became very interested in understanding what happens inside the computer that allowed it to read and process my code. At first, I came across different videos that explained binary and how it is used to create the logic behind computers. Soon, I came across Ben Eater's video series showing how to make a Breadboard 8-bit Computer. Instantly, I knew that I wanted to follow this tutorial to learn how a computer functions.</p>
+            <p>One challenge I ran into was simply obtaining the parts for the computer. Many of the chips required for the project were difficult to find or surprisingly expensive. Since I had the project in mind when I was visiting family in India, I took advantage of the opportunity to purchase many of the components at a lower price while in India. While this approach did work, many of the integrated circuits were different than the ones Ben Eater used in his videos. This mismatch led me to research and read the datasheets for each chip to learn the purpose of the pins. Looking back, this detour helped me realize that a project doesn't start with the assembly; it starts with the planning, budgeting, and ideation stages.</p>
+            <p>Although the overall architecture of my 8-bit computer followed Ben Eater's design, my goal extended far beyond assembling the computer. My true goal was to understand how the different parts of the computer interacted with each other and worked. I wanted to understand the purpose of each wire involved. Slowly, I constructed the clock module, registers, arithmetic logic unit (ALU), RAM, and control logic and learned how they interacted with one another.</p>
+            <p>One of my favorite moments during the project was watching concepts that had once existed only in videos come to life. It was very interesting seeing the control logic, clock unit, and ALU work together in a circuit I could see in real time. This visualization helped me understand how fast data travels through a computer to perform even simple tasks such as counting.</p>
+            <p>This project not only taught me about computer architecture, but I also developed my skills in chip debugging. Throughout the process of creating the 8-bit computer, I had to constantly look for loose connections and malfunctioning chips. The process also taught me a lot about analyzing datasheets. Since I was using some chips Ben Eater did not have in his design, I had to learn how to integrate those chips into the architecture.</p>
+            <p>Although the computer successfully executes programs, I still don't consider the project finished. If I continue developing it, I'd love to expand its capabilities by adding new instructions, increasing available memory, and connecting a simple display. One idea that particularly excites me is modifying the computer to run simple games such as Tetris or Snake. Overall, this project changed the way I think about computers. While the modules seemed complex at first, after I broke them down, I started to understand how a computer truly operates.</p>
+            <div class="story-subhead">Results</div>
+            <p>The output register and bus LEDs make every instruction visible as it executes: data moving between registers, <b>one clock cycle at a time</b>.</p>
+            <div class="res-grid-v2" style="grid-template-columns:1fr;max-width:320px;">
+              <div>
+                <div class="res-tile-v2"><img src="assets/img/2d038974f7.jpg" alt="Breadboard computer instruction register LEDs" loading="lazy"></div>
+                <div class="res-cap-v2">Instruction Register</div>
+              </div>
+            </div>
+          </div>
+          <div class="iter-col">
+            <div class="iter-eyebrow">Design Process</div>
+            <div class="iter-card">
+              <div class="iter-label">Early Wiring</div>
+              <div class="iter-media">
+                <img src="assets/img/c83887d9b8.jpg" alt="Early breadboard computer wiring detail" loading="lazy">
+              </div>
+              <div class="iter-cap">Core logic modules, including the clock, registers, and control lines, going in first.</div>
+            </div>
+            <span class="iter-col-connector"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="iter-card">
+              <div class="iter-label">Adding Modules</div>
+              <div class="iter-media">
+                <img src="assets/img/d942b1591c.jpg" alt="Additional breadboard computer modules being wired" loading="lazy">
+              </div>
+              <div class="iter-cap">ALU and additional registers wired in, with the jumper count climbing fast.</div>
+            </div>
+            <span class="iter-col-connector"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="iter-card">
+              <div class="iter-label">Completed Build</div>
+              <div class="iter-media">
+                <img src="assets/img/faad4d268f.jpg" alt="Completed 8-bit breadboard computer" loading="lazy">
+              </div>
+              <div class="iter-cap">Full system, all modules connected and running programs end to end.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section" style="border-bottom:none;">
+        <div class="pv2-num">03</div>
+        <h3 class="pv2-heading">What's Next</h3>
+        <p class="next-intro">The computer runs real programs today, but I don't consider it finished. I see it as a foundation for the next question rather than a closed chapter. Planned next steps include:</p>
+        <div class="next-grid">
+          <div class="next-card">
+            <h4>Expanded Instruction Set</h4>
+            <p>New opcodes beyond the original design.</p>
+          </div>
+          <div class="next-card">
+            <h4>More Memory</h4>
+            <p>Increasing available memory beyond the current capacity.</p>
+          </div>
+          <div class="next-card">
+            <h4>Output Display</h4>
+            <p>A simple output display for more direct visual feedback.</p>
+          </div>
+          <div class="next-card">
+            <h4>Playable Games</h4>
+            <p>Building simple games such as Tetris or Snake to explore the hardware/software boundary further.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PROJECT 3: SOLAR SYSTEM SIMULATOR ============ -->
+    <div class="project-block" id="solar-system-simulator">
+      <div class="ph-bar">
+        <div class="breadcrumb" style="margin-bottom:0;">
+          <a href="index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <a href="#">Projects</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <span>Solar System Simulator</span>
+        </div>
+        <div class="ph-pager">
+          <span>03 / 03</span>
+        </div>
+      </div>
+
+      <div class="hero-v2">
+        <div>
+          <div class="pv2-eyebrow">Project / 03</div>
+          <h2 class="pv2-title">Solar System<br>Simulator</h2>
+          <p class="pv2-lead">Simulating real orbital motion</p>
+          <p class="pv2-sub">Using Newtonian physics and numerical methods in Java.</p>
+          <div class="pv2-divider"></div>
+          <div class="pv2-meta">
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><span class="pm-label">Status</span><span class="pm-value accent">Functional</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a1.5 1.5 0 0 0 2 2l6-6a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2z"/></svg></span><span class="pm-label">Disciplines</span><span class="pm-value">Physics, Software</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="pm-label">Tools</span><span class="pm-value">Java, Swing</span></div>
+            <div class="pm-row"><span class="pm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span><span class="pm-label">Scale</span><span class="pm-value">1M+ Objects</span></div>
+          </div>
+          <div class="pv2-ctas">
+            <a href="contact.html" class="pv2-btn-solid">Contact Me About This <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></a>          </div>
+        </div>
+
+        <!-- TODO(Aryan): swap for a short muted/looping screen capture of the simulation running.
+             Drop the file at assets/video/solar-system-simulator-demo.mp4, then replace the <img> below with:
+             <video class="project-video" autoplay muted loop playsinline poster="assets/img/93b2c1ee59.jpg">
+               <source src="assets/video/solar-system-simulator-demo.mp4" type="video/mp4">
+             </video>
+             <img class="project-video-fallback" src="assets/img/93b2c1ee59.jpg" alt="Solar system simulator view of Jupiter and its moons">
+             (.project-video / .project-video-fallback CSS already defined, swaps automatically for prefers-reduced-motion.) -->
+        <div class="pv2-media-wrap" style="padding:24px;">
+          <div class="pv2-media-frame">
+            <span class="pv2-corner tl"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner tr"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner bl"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <span class="pv2-corner br"><svg viewBox="0 0 14 14" fill="none"><path d="M14 1H1V14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <img src="assets/img/93b2c1ee59.jpg" alt="Solar system simulator view of Jupiter and its moons" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section">
+        <div class="pv2-two-col">
+          <div class="pv2-col-text">
+            <div class="pv2-num">01</div>
+            <h3 class="pv2-heading">The Idea</h3>
+            <p>I had created an older version of this simulation that relied on shortcuts rather than physics; however, after learning Newtonian physics while at the Georgia Institute of Technology, I wanted to see if I could implement those equations to rebuild the simulation properly.</p>
+            <p>Initially, the goal was to create a simple simulation of eight planets within our solar system, but it soon evolved into way more than that. Slowly, I started adding dwarf planets, moons, comets, and even asteroids while also balancing the optimization and rendering of the simulation.</p>
+          </div>
+          <div class="flow-diagram">
+            <div class="fd-box">Position<br>&amp; Velocity</div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-box fd-accent">Gravity<span class="fd-sub">Newtonian Calc</span></div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-box">Integration<span class="fd-sub">Update Motion</span></div>
+            <span class="fd-arrow"><svg viewBox="0 0 16 34" fill="none"><path d="M8 0V30M8 30L3 24M8 30L13 24" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="fd-box">Render<br>Frame</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section">
+        <div class="pv2-num">02</div>
+        <h3 class="pv2-heading">The Story</h3>
+        <div class="pv2-col-text" style="max-width:680px;">
+          <p class="story-question">Question that started it: Can I recreate the motion of the Solar System using physics?</p>
+          <p>Long before starting this project, I had attempted to build a solar system simulation of my own. Although I was proud of what I created at the time, I knew it wasn't an accurate representation of how gravity actually works. The simulation relied on many shortcuts, and I lacked both the physics knowledge and programming experience to model planetary motion realistically.</p>
+          <p>Everything changed when I began learning about Newtonian physics while at Georgia Tech. I found myself wondering if those same equations could be used to fix my model of the solar system. I saw it as an opportunity to revisit one of my earlier projects and rebuild it using a much deeper understanding of both physics and programming.</p>
+          <p>First, I coded a small simulation that included the four rocky planets and the Sun. While this simulation was simple, it was a more accurate recreation of my older solar system simulation. While I had already reached my initial goal, I wanted to add the outer planets of the solar system into the simulation. After I reached Neptune, I had hit a wall. Due to the size of Neptune's orbit, it would not fit in the simulation window.</p>
+          <p>To counteract this issue, I started developing a camera that I could use to move around and zoom into the different planets. Slowly, this cycle of development kept going until I had added dwarf planets, moons, comets, and asteroids. I also integrated small features such as custom textures for the planets so that the simulation gave a better user experience.</p>
+          <p>One of the biggest challenges I ran into was balancing realism with computational performance. As I expanded the simulator to include the Asteroid Belt, comets, and the Kuiper Belt, the number of calculations grew exponentially. This issue forced me to think about efficiency. I experimented with optimization techniques, reorganized parts of the simulation loop, and separated physics calculations from rendering.</p>
+          <p>Perhaps the most satisfying milestone came when I successfully scaled portions of the simulation to handle over one million objects. To reach that point, I had to implement several optimization techniques. The process of getting there taught me that at certain scales, optimization is the true backbone of a programming project.</p>
+          <p>Although the simulator already models much of our solar system, I still consider it an ongoing project. In the future, I'd like to improve the numerical integration methods, simulate additional astronomical phenomena, incorporate spacecraft trajectories, and continue refining the user experience. Like many of my projects, I don't see it as something to finish; I see it as something that will continue growing as my own understanding grows.</p>
+        </div>
+      </div>
+
+      <div class="pv2-section" style="border-bottom:none;">
+        <div class="pv2-two-col">
+          <div class="pv2-col-text">
+            <div class="pv2-num">03</div>
+            <h3 class="pv2-heading">Results</h3>
+            <p>The simulator tracks everything from the inner planets to individual moons and asteroids, with real orbital data behind every object.</p>
+          </div>
+          <div class="res-grid-v2">
+            <div>
+              <div class="res-tile-v2"><img src="assets/img/0266ddcdcc.jpg" alt="Simulator view of Earth's orbit with object info panel" loading="lazy"></div>
+              <div class="res-cap-v2">Earth's Orbit</div>
+            </div>
+            <div>
+              <div class="res-tile-v2"><img src="assets/img/e86651efef.jpg" alt="Simulator zoomed-out view showing Jupiter and Saturn systems" loading="lazy"></div>
+              <div class="res-cap-v2">Jupiter &amp; Saturn</div>
+            </div>
+            <div>
+              <div class="res-tile-v2"><img src="assets/img/578c846364.jpg" alt="Simulator close-up view of the dwarf planet Ceres" loading="lazy"></div>
+              <div class="res-cap-v2">Ceres, Close Up</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv2-section" style="border-bottom:none;">
+        <div class="pv2-num">04</div>
+        <h3 class="pv2-heading">What's Next</h3>
+        <p class="next-intro">The simulator already models much of our solar system, but I still treat it as an ongoing project rather than a finished one. Planned improvements include:</p>
+        <div class="next-grid">
+          <div class="next-card">
+            <h4>Better Integration</h4>
+            <p>More accurate numerical integration methods for better long-term orbital stability.</p>
+          </div>
+          <div class="next-card">
+            <h4>More Phenomena</h4>
+            <p>Additional astronomical phenomena beyond the current object set.</p>
+          </div>
+          <div class="next-card">
+            <h4>Spacecraft Trajectories</h4>
+            <p>Spacecraft trajectory modeling.</p>
+          </div>
+          <div class="next-card">
+            <h4>Refined Controls</h4>
+            <p>Continued refinement of the camera controls and overall user experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="other-projects">
+      <h3>Keep Exploring</h3>
+      <div class="op-grid">
+        <a href="about.html" class="op-card"><span>About Me</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+        </a>
+        <a href="contact.html" class="op-card"><span>Get In Touch</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="bp-lines"></div>
+  <div class="wrap foot-quote">
+    <div class="foot-links">
+      <a href="resume.html">Resume</a>
+      <a href="mailto:abp.aryan7@gmail.com">Email</a>
+      <!-- TODO(Aryan): add GitHub + LinkedIn links here once you share the profile URLs -->
+    </div>
+    <p class="foot-disclosure">This portfolio website was developed using a combination of my own work and AI-assisted coding tools. All project content, descriptions, and images were created by me.</p>
+  </div>
+</footer>
+
+<div id="scrollSpacer" aria-hidden="true" style="height:0"></div>
+
+<script>
+
+(function () {
+  const burger = document.getElementById('burgerBtn');
+  const icon = document.getElementById('burgerIcon');
+  const menu = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+  const barsPath = 'M3 6h18M3 12h18M3 18h18';
+  const xPath = 'M6 6l12 12M18 6L6 18';
+  const setOpen = (open) => {
+    menu.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (icon) icon.innerHTML = '<path d="' + (open ? xPath : barsPath) + '"/>';
+  };
+  burger.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+})();
+
+(function () {
+  const navLinks = Array.from(document.querySelectorAll('#navLinks a[data-section]'));
+  if (!navLinks.length) return;
+  const targets = navLinks
+    .map(a => ({ a, el: document.getElementById(a.getAttribute('data-section')) }))
+    .filter(t => t.el);
+  const setActive = () => {
+    let current = targets[0];
+    const y = window.scrollY + 100;
+    targets.forEach(t => { if (t.el.offsetTop <= y) current = t; });
+    targets.forEach(t => t.a.classList.toggle('active', t === current));
+  };
+  document.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+})();
+
+// Re-align in-page/cross-page anchor links (e.g. Goals, Resume) after all
+// images have finished loading, since large embedded photos can shift the
+// layout after the browser's initial jump to the anchor.
+(function () {
+  function jumpToHash(behavior) {
+    if (!location.hash) return;
+    let target;
+    try { target = document.querySelector(location.hash); } catch (e) { return; }
+    if (!target) return;
+    const header = document.querySelector('header');
+    const offset = (header ? header.offsetHeight : 72) + 12;
+    const spacer = document.getElementById('scrollSpacer');
+    if (spacer) spacer.style.height = '0px';
+    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+    if (spacer) {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const shortfall = top - maxScroll;
+      if (shortfall > 0) spacer.style.height = shortfall + 'px';
+    }
+    window.scrollTo({ top: Math.max(top, 0), behavior });
+  }
+  function scrollToHash() {
+    // Animate the scroll so it's visually clear where you landed and why,
+    // then snap to a freshly recomputed position once the animation ends,
+    // since lazy-loaded images passed during the scroll can shift the
+    // layout and leave the animated scroll short of the real target.
+    jumpToHash('smooth');
+    const correct = () => jumpToHash('instant');
+    if ('onscrollend' in window) {
+      window.addEventListener('scrollend', correct, { once: true });
+    } else {
+      setTimeout(correct, 900);
+    }
+  }
+  window.addEventListener('load', scrollToHash);
+  window.addEventListener('hashchange', scrollToHash);
+})();
+
+// Click-to-zoom lightbox for project photos and demo videos
+(function () {
+  const selector = '.pv2-media-frame img, .iter-media img, .res-tile-v2 img, .gallery .g-tile img, .ov-tile img';
+  const imgs = Array.from(document.querySelectorAll(selector));
+  const videos = Array.from(document.querySelectorAll('.video-tile video.project-video'));
+  const videoFallbacks = Array.from(document.querySelectorAll('.video-tile img.project-video-fallback'));
+  if (!imgs.length && !videos.length && !videoFallbacks.length) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.innerHTML = '<span class="lightbox-close">Close ✕</span><img alt="" style="display:none;"><video muted loop playsinline style="display:none;"></video>';
+  document.body.appendChild(overlay);
+  const overlayImg = overlay.querySelector('img');
+  const overlayVideo = overlay.querySelector('video');
+
+  function openImage(img) {
+    overlayVideo.pause();
+    overlayVideo.removeAttribute('src');
+    overlayVideo.style.display = 'none';
+    overlayImg.style.display = 'block';
+    overlayImg.src = img.src;
+    overlayImg.alt = img.alt || '';
+    overlay.classList.add('open');
+  }
+  function openVideo(video) {
+    overlayImg.style.display = 'none';
+    const source = video.querySelector('source');
+    overlayVideo.poster = video.getAttribute('poster') || '';
+    overlayVideo.src = source ? source.src : video.currentSrc;
+    overlayVideo.style.display = 'block';
+    overlayVideo.play().catch(() => {});
+    overlay.classList.add('open');
+  }
+  function close() {
+    overlay.classList.remove('open');
+    overlayImg.src = '';
+    overlayVideo.pause();
+    overlayVideo.removeAttribute('src');
+  }
+
+  imgs.forEach(img => {
+    img.classList.add('zoomable');
+    img.addEventListener('click', () => openImage(img));
+  });
+  videos.forEach(video => {
+    video.addEventListener('click', () => openVideo(video));
+  });
+  videoFallbacks.forEach(img => {
+    img.addEventListener('click', () => openImage(img));
+  });
+  overlay.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
+
+</script>
+</body>
+</html>
